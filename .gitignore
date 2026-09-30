@@ -1,0 +1,7 @@
+.env
+
+venv
+
+mysql
+
+frontend/node_modules
