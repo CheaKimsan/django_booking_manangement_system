@@ -8,9 +8,14 @@ class Movie(models.Model):
     language = models.CharField(max_length=50)
     duration_min = models.PositiveIntegerField()
     release_date = models.DateField(null=True, blank=True)
-    poster = models.ImageField(upload_to='movie_posters/', blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    poster = models.ImageField(
+        upload_to='movie_posters/',
+        blank=True,
+        null=True
+    )
 
     class Meta:
         ordering = ['-created_at']

@@ -9,6 +9,10 @@ urlpatterns = [
     path('api/', include('Apps.Movie.urls')),
     path('api/', include('Apps.Theater.urls')),
 
+    path('api/', include('Apps.Showtime.urls')),
+
+    path('api/', include('Apps.Booking.urls')),
+
 ]
 
 # Serve uploaded posters in development

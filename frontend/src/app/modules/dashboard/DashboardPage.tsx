@@ -1,9 +1,9 @@
 import { useAuth } from "../auth/AuthContext";
 
 const DashboardPage = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
-    console.log(user)
+  console.log(user)
 
   return (
     <div>

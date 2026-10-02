@@ -61,3 +61,41 @@ class TheaterPermission(BasePermission):
             theater = obj.screen.theater
 
         return theater.manager_id == user.id
+
+
+class ShowtimePermission(BasePermission):
+    """
+    Read: anyone.
+    Create/Update/Delete: admin (any), or a THEATER_MANAGER for showtimes
+    on screens belonging to their own theater.
+    """
+
+    def has_permission(self, request, view):
+        if request.method in SAFE_METHODS:
+            return True
+        user = request.user
+        if not (user and user.is_authenticated):
+            return False
+        return user.is_admin or user.is_theater_manager
+
+    def has_object_permission(self, request, view, obj):
+        if request.method in SAFE_METHODS:
+            return True
+        user = request.user
+        if user.is_admin:
+            return True
+        return obj.screen.theater.manager_id == user.id
+
+
+class IsOwnerOrAdmin(BasePermission):
+    """
+    Create: any authenticated user (they're booking for themselves).
+    Read/Update/Delete: the booking's own user, or an admin.
+    """
+
+    def has_permission(self, request, view):
+        return bool(request.user and request.user.is_authenticated)
+
+    def has_object_permission(self, request, view, obj):
+        user = request.user
+        return user.is_admin or obj.user_id == user.id

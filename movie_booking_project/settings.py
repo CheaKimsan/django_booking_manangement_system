@@ -42,12 +42,15 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'storages',
 
     # local apps
     'Core',
     'Apps.UserManagement',
     'Apps.Movie',
-    'Apps.Theater'
+    'Apps.Theater',
+    'Apps.Showtime',
+    'Apps.Booking'
 ]
 
 AUTH_USER_MODEL = 'UserManagement.User'  # ← ចំណុចសំខាន់បំផុត
@@ -152,11 +155,32 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-
 # Media files (user uploads)
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "endpoint_url": config(
+                "MINIO_ENDPOINT",
+                default="http://localhost:9000",
+            ),
+            "access_key": config("MINIO_ROOT_USER"),
+            "secret_key": config("MINIO_ROOT_PASSWORD"),
+            "bucket_name": config(
+                "MINIO_BUCKET",
+                default="media",
+            ),
+            "region_name": config(
+                "MINIO_REGION",
+                default="us-east-1",
+            ),
+        },
+    },
 
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
 # Email
 # https://docs.djangoproject.com/en/6.1/topics/email/#topic-email-configuration
 
@@ -173,8 +197,6 @@ SIMPLE_JWT = {
 }
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "Asia/Phnom_Penh"
-
 USE_I18N = True
 USE_TZ = True

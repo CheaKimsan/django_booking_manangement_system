@@ -67,7 +67,6 @@ export function columns({
     {
       title: "Role",
       key: "role",
-      width: "150px",
       render: (u) => {
         // Map roles to our new CSS badge classes
         let badgeClass = "badge-soft customer";
@@ -84,7 +83,6 @@ export function columns({
     {
       title: "Status",
       key: "status",
-      width: "110px",
       render: (u) => (
         <span className={`badge-soft ${u.is_active ? "success" : "danger"}`}>
           {u.is_active ? "Active" : "Inactive"}
