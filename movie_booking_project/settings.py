@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
+import os
 from datetime import timedelta
 from pathlib import Path
 
@@ -50,7 +51,8 @@ INSTALLED_APPS = [
     'Apps.Movie',
     'Apps.Theater',
     'Apps.Showtime',
-    'Apps.Booking'
+    'Apps.Booking',
+    'Apps.Payment'
 ]
 
 AUTH_USER_MODEL = 'UserManagement.User'  # ← ចំណុចសំខាន់បំផុត
@@ -200,3 +202,10 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Phnom_Penh"
 USE_I18N = True
 USE_TZ = True
+
+ALLOWED_HOSTS = ['dumpling-shortwave-giver.ngrok-free.dev', 'localhost', '127.0.0.1']
+
+GATEWAY_BASE_URL = os.getenv("GATEWAY_BASE_URL", "https://api.analitekit.shop")
+GATEWAY_API_KEY = os.getenv("GATEWAY_API_KEY")
+GATEWAY_WEBHOOK_URL = os.getenv("GATEWAY_WEBHOOK_URL")
+GATEWAY_WEBHOOK_SECRET = os.getenv("GATEWAY_WEBHOOK_SECRET")

@@ -9,7 +9,7 @@ class User(AbstractUser):
         ADMIN = 'ADMIN', 'Administrator'
         CUSTOMER = 'CUSTOMER', 'Customer'
         THEATER_MANAGER = 'THEATER_MANAGER', 'Theater Manager'
-
+        STAFF = 'STAFF', 'Staff'
     role = models.CharField(max_length=20, choices=Role.choices, default=Role.CUSTOMER)
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     address = models.TextField(blank=True, null=True)

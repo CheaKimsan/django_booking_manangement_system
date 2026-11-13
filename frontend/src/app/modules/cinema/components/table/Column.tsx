@@ -48,19 +48,6 @@ export function columns({
             ),
         },
         {
-            title: "Screens",
-            key: "screens",
-            align: "center",
-            render: (t) => {
-                const count = t.screens?.length ?? 0;
-                return (
-                    <span style={{ color: "var(--text-muted)" }}>
-                        {count > 0 ? `${count} screen${count !== 1 ? "s" : ""}` : <Dash />}
-                    </span>
-                );
-            },
-        },
-        {
             title: "Status",
             key: "status",
             render: (t) => (

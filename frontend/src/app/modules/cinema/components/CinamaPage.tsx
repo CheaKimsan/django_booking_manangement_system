@@ -11,7 +11,7 @@ const CinemaPage = () => {
     const {
         search, setSearch,
         statusFilter, setStatusFilter,
-        openEdit, openView, drawer, closeDrawer, openCreate,
+        openEdit, drawer, closeDrawer, openCreate,
     } = useCinemaStore();
     const queryClient = useQueryClient();
 
@@ -89,7 +89,7 @@ const CinemaPage = () => {
                 rows={filteredTheaters}
                 rowKey={(t) => t.id}
                 loading={isLoading}
-                onRowClick={(t) => openView(t)}
+                onRowClick={(t) => openEdit(t)}
             />
 
             <CreateCinemaPage

@@ -18,7 +18,6 @@ class ScreenSerializer(serializers.ModelSerializer):
 
 class TheaterSerializer(serializers.ModelSerializer):
     manager_name = serializers.CharField(source='manager.get_full_name', read_only=True)
-    screens = ScreenSerializer(many=True, read_only=True)
 
     class Meta:
         model = Theater

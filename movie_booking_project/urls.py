@@ -8,10 +8,9 @@ urlpatterns = [
     path('api/auth/', include('Apps.UserManagement.urls')),
     path('api/', include('Apps.Movie.urls')),
     path('api/', include('Apps.Theater.urls')),
-
     path('api/', include('Apps.Showtime.urls')),
-
     path('api/', include('Apps.Booking.urls')),
+    path('api/', include('Apps.Payment.urls')),  # add this
 
 ]
 

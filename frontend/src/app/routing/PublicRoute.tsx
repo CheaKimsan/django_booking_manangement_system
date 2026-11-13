@@ -1,16 +1,20 @@
-import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../modules/auth/AuthContext";
+import { deriveRole } from "../../helpers/Role";
 
-const PublicRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function PublicRoute({ children }: { children: React.ReactNode }) {
+    const { isAuthenticated, user } = useAuth();
 
-    const { isAuthenticated } = useAuth();
+    if (isAuthenticated) {
+        const role = deriveRole(user);
 
-  if (isAuthenticated) {
-    return <Navigate to="/dashboard" replace />;
-  }
+            if (role === "ADMIN" || role === "THEATER_MANAGER" || role === "STAFF") {
+            return <Navigate to="/management/dashboard" replace />;
+        }
 
-  return <>{children}</>;
-};
+        // Customers go to the customer homepage
+        return <Navigate to="/" replace />;
+    }
 
-export default PublicRoute;
+    return <>{children}</>;
+}

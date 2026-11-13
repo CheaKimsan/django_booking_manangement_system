@@ -5,10 +5,7 @@ from .models import Booking, BookingSeat
 from Apps.Theater.models import Seat, Screen
 from Apps.Theater.serializers import SeatSerializer
 from Apps.Showtime.models import Showtime
-from Apps.Movie.models import Movie  # adjust this path to where your Movie model lives
-
-    
-# ---------- Slim, booking-specific nested serializers ----------
+from Apps.Movie.models import Movie
 
 class BookingMovieSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,8 +29,6 @@ class BookingShowtimeSerializer(serializers.ModelSerializer):
         model = Showtime
         fields = ['id', 'start_time', 'price', 'movie_detail', 'screen_detail']
 
-
-# ---------- Booking ----------
 
 class BookingSeatSerializer(serializers.ModelSerializer):
     seat_detail = SeatSerializer(source='seat', read_only=True)

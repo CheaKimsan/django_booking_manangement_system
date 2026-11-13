@@ -94,7 +94,7 @@ export default function ActionCell<T extends HasIdAndActive>({
                                 onClick={() => handleAction(() => onToggleActive(row.id, !row.is_active))}
                             >
                                 <PersonDeleteRegular />
-                                {row.is_active ? "Deactivate" : "Activate"}
+                                {row.is_active ? "Inactive" : "Activate"}
                             </button>
 
                             <button

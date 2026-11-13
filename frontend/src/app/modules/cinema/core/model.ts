@@ -31,7 +31,7 @@ export interface Theater {
   screens: Screen[];             // nested, read-only
 }
 
-// Payload shapes for forms — screens/seats are never created directly
+// Payload shapes for form — screens/seats are never created directly
 // from a Theater form; a screen is created separately via POST /api/screens
 // (its seats auto-generate on the backend), and seats are never POSTed at all.
 export interface TheaterPayload {

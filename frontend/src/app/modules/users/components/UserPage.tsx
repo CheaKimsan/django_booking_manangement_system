@@ -89,7 +89,7 @@ const UserPage = () => {
                 rows={filteredUsers}
                 rowKey={(u) => u.id}
                 loading={isLoading}
-                onRowClick={(u) => openView(u)}
+                onRowClick={(u) => openEdit(u)}
             />
 
             <CreateUserPage

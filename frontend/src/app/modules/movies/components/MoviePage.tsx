@@ -94,7 +94,7 @@ const MoviePage = () => {
                 rows={filteredMovies}
                 rowKey={(m) => m.id}
                 loading={isLoading}
-                onRowClick={(m) => openView(m)}
+                onRowClick={(m) => openEdit(m)}
             />
 
             <CreateMoviePage
